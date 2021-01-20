@@ -7,23 +7,9 @@
 </head>
 <body>
   <div id="app">
-    Hello {{ person.name }} you have {{ person.age }} years old <!-- Los objetos que contenga data() se interpolan -->
   </div>
 
-  <script type="module">
-    import { createApp } from './node_modules/vue/dist/vue.esm-browser.js';
-    const app = createApp({
-      data() { /* Data devuelve objetos */
-        return {
-          msg: 'world',
-          person: {
-            name: "Santiago",
-            age: 23
-          }
-        }
-      }
-    }).mount('#app'); /* Creo mi app en Vue y la monto sobre el div con el id "app" */
-  </script>
+  <script type="module" src="/index.js"></script>
   
 </body>
 </html>
