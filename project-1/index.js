@@ -24,7 +24,8 @@ const app = createApp({
   </div>
 
   <!-- <input @input="input" v-bind:value="value" /> -->
-  <input type="checkbox" v-model="value"/>  <!-- Esto hace lo mismo que lo de arriba -->
+  <input type="radio" v-model="value" value="a"/>  <!-- Esto hace lo mismo que lo de arriba -->
+  <input type="radio" v-model="value" value="b"/>
   {{ value }}
   <div v-if="error"> {{ error }} </div>
 
@@ -45,7 +46,7 @@ const app = createApp({
     return {
       count: 0,
       numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      value: false,
+      value: "a",
     }
   },
 
