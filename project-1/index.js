@@ -1,7 +1,16 @@
 import { createApp } from './node_modules/vue/dist/vue.esm-browser.js';
 
+const Hello = { /* Componente separado que puede ser utilizado en cualquier parte del código */
+  template: `<h3>Hello from component</h3>`
+}
+
 const app = createApp({
+  components: { /* Declaro los componentes que voy a usar */
+    Hello
+  },
+
   template: `
+  <hello /> <!-- importo el componente que creé y declaré más arriba -->
   <button v-on:click="increment(5)">Increment</button> <!--Esto tambien se puede escribir como @click= -->
   <!-- El v-on es como el de jquery o el onclick de javascript -->
 
@@ -22,7 +31,7 @@ const app = createApp({
     </div>
     <!-- </div> -->
   </div>
-
+  <hello /> <!-- importo denuevo el componente que creé y declaré más arriba -->
   <!-- <input @input="input" v-bind:value="value" /> -->
   <input type="checkbox" v-model="value" value="a"/>  <!-- Esto hace lo mismo que lo de arriba -->
   <input type="checkbox" v-model="value" value="b"/>
