@@ -3,10 +3,14 @@
     <my-input 
       name="Username"
       :rules = "{ required: true, min: 5 }"
+      :value = "username.value"
+      @update="update"
     />
     <my-input 
       name="Password"
       :rules = "{ required: true, min: 8 }"
+      :value = "password.value"
+      @update="update"
     />
     <my-button 
       color="white"
@@ -28,7 +32,20 @@ export default {
   },
   data() {
     return {
-      valid: true /* Esta es la variable que bindee arriba */
+      valid: true, /* Esta es la variable que bindee arriba */
+      username: {
+        value: '',
+        valid: false
+      },
+      password: {
+        value: '',
+        valid: false
+      }
+    }
+  },
+  methods: { 
+    update(payload) {
+      this[payload.name.toLowerCase()].value = payload.value; /* lowercaseo el name del input */
     }
   }
 }

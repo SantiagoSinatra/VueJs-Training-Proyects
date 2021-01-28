@@ -7,9 +7,10 @@
     <input
       :id="name" 
       type="text"
-      v-model="value" 
+      :value = "value"
+      @input="input"
     />
-    <!-- v-model: es el shorthand para v-bind:value="value" @input="value" = $event || basicamente y mágicamente escucha el valor que tenga el input apenas lo uso y va actualizando la variable que ponga en data() -->
+    <!-- (lo de arriba estaba con v-model en el commit anterior)v-model: es el shorthand para v-bind:value="value" @input="value" = $event || basicamente y mágicamente escucha el valor que tenga el input apenas lo uso y va actualizando la variable que ponga en data() -->
   </div>
 </template>
 
@@ -22,13 +23,17 @@ export default {
     },
     rules: {
       type: Object // min, required
+    },
+    value: {
+      type: String
     }
   },
-  data() {
+  /* data() {
     return {
       value: '' /* Variable del input que escucho con el v-model */
-    }
+    /*}
   },
+  */
   computed: {
     error() {
       /* Con ese value hago las validaciones correspondientes dentro de una funcion en computed que se ejecuta en cada instancia nueva (osea cada vez que cambia el value) */
@@ -40,8 +45,15 @@ export default {
         return `Minimum length is  ${this.rules.min}`;
       }
     }
+  },
+  methods: {
+    input($evt) {
+      this.$emit('update', {
+        value: $evt.target.value,
+        name: this.name 
+      }); /* emito un evento llamado update al padre con el value del input y el name */
+    }
   }
-  
 }
 </script>
 
