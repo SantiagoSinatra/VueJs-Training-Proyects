@@ -6,7 +6,7 @@
     </div>
     <input
       :id="name" 
-      type="text"
+      :type="type"
       :value = "value"
       @input="input"
     />
@@ -26,6 +26,9 @@ export default {
     },
     value: {
       type: String
+    },
+    type: {
+      type: String
     }
   },
   /* data() {
@@ -38,20 +41,24 @@ export default {
     error() {
       /* Con ese value hago las validaciones correspondientes dentro de una funcion en computed que se ejecuta en cada instancia nueva (osea cada vez que cambia el value) */
       /* console.log("me ejecuto") descomentar esta linea para ver como actua :D*/
-      if(this.rules.required && this.value.length === 0) {
-        return 'Required';
-      }
-      if(this.rules.min && this.value.length < this.rules.min) {
-        return `Minimum length is  ${this.rules.min}`;
-      }
+      return this.validate(this.value); /* Movi lo que hacía error() a otra función en methods */
     }
   },
   methods: {
+    validate(value) {
+      if(this.rules.required && !value.length === 0) {
+        return 'Required';
+      }
+      if(this.rules.min && value.length < this.rules.min) {
+        return `Minimum length is  ${this.rules.min}`;
+      }
+    },
     input($evt) {
       this.$emit('update', {
         value: $evt.target.value,
-        name: this.name 
-      }); /* emito un evento llamado update al padre con el value del input y el name */
+        name: this.name, 
+        valid: this.validate($evt.target.value) ? false : true /* Me fijo si la funcion validate retorna un string y si es asi lo dejo como falso y sino lo hago true. (si retorna un string quiere decir que algo está mal) */
+      }); /* emito un evento llamado update al padre con el value del input, el name, y la validación */
     }
   }
 }
