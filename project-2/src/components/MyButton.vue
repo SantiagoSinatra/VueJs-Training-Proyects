@@ -1,7 +1,10 @@
 <template>
-  <button v-bind:style="{ background: background, color}">
+  <button v-bind:style="{ background: background, color }" v-bind:class="{ 'disabled-button' : disabled }">
     Button
-  </button> <!-- Por ejemplo acá estoy usando la variable background y el valor lo asigno en el padre App.vue --> <!-- Además si tengo el mismo nombre de variable que el nombre de propiedad puedo omitir el nombre de la propiedad como hice con el color -->
+  </button> 
+  <!-- Por ejemplo acá estoy usando la variable background y el valor lo asigno en el padre App.vue --> 
+  <!-- Además si tengo el mismo nombre de variable que el nombre de propiedad puedo omitir el nombre de la propiedad como hice con el color -->
+  <!-- Tambien puedo usar los : para preguntar el estado de una variable, en este caso disabled (que viene del padre App.vue y realizar una accion, en este caso, agregar una clase 'disabled-button' vendria a ser como un if ternario aprox) -->
 </template>
 
 <script>
@@ -33,5 +36,9 @@ button {
 
 button:hover {
   filter: brightness(125%);
+}
+
+.disabled-button {
+  opacity: 0.5;
 }
 </style>
