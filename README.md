@@ -26,5 +26,16 @@ This is the first time I used Vue.js feel free to check each commit because some
 
 ### project-2
 #### Description
+This is a simple two input form that validates two different fields one for the username and the other for a password.<br>The **username** is required and must have at least 5 characters. This is validated using a method inside the input component that requires two props:
+- **rules** that are like flags that indicate what kind of validation is needed.
+- **value** that is the value of the input.<br>
+After the value is validated if there is an error a string with the end result of the validation is returned inside a computed property **error()** and then this is echoed in the template for the user to see.<br> This input is also has another method **input()** that is in charge of emmiting the value and the validation to another method **update()** in its parent this is used to enable or disable the input button preventing the user from submitting a wrong form.
+#### Summary of Topics
+`vue.js` `vite` `app creation` `separate component` `template` `props` `methods` `data` `computed` `v-if` `v-else` `v-for` `v-bind` `v-show` `v-on` `v-model` `@click` `@input` `@submit.prevent="submit"`
+
+<hr>
+
+### project-3
+#### Description
 Coming soon!
 
